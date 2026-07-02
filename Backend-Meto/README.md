@@ -1,51 +1,86 @@
-# Backend Meto
+# Backend - Proyecto METO
 
-Backend inicial siguiendo el orden de avance pedido en metodologia del desarrollo:
+Backend desarrollado en Node.js con Express, Sequelize y PostgreSQL.
 
-1. Crear entidades desde el MER.
-2. Crear configuracion de entorno y base de datos.
-3. Crear el setup inicial para levantar tablas y datos base.
-4. Configurar servicios, controladores y rutas.
+---
 
-## Estructura
+## Requisitos previos
 
-- `src/entities`: entidades que se traspasan desde el MER al codigo.
-- `src/config/configEnv.js`: extrae variables de entorno y las deja disponibles para el backend.
-- `src/config/configDb.js`: crea la conexion a la base de datos usando las variables de entorno.
-- `src/initialSetup.js`: crea las tablas y genera usuarios base cuando corresponde.
-- `src/repositories`: acceso a datos de cada entidad.
-- `src/app.js`: configuracion de Express.
-- `src/server.js`: arranque del servidor.
+- Node.js instalado
+- PostgreSQL instalado y corriendo
 
-## Primer uso
+---
 
-Instalar dependencias:
+## Instalación
 
 ```bash
 npm install
 ```
 
-Crear la base de datos MySQL indicada en `.env`:
+## Configuración
+
+Crea el archivo `.env` en la raíz del proyecto:
+PORT=3000
+NODE_ENV=development
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=backend_meto
+DB_USER=postgres
+DB_PASSWORD=tu_contraseña
+DEFAULT_ADMIN_NAME=Administrador
+DEFAULT_ADMIN_EMAIL=admin@example.com
+DEFAULT_ADMIN_PASSWORD=admin123
+JWT_SECRET=clave_secreta_jwt
+
+Crea la base de datos en PostgreSQL:
 
 ```sql
 CREATE DATABASE backend_meto;
 ```
 
-Ejecutar setup inicial:
+## Inicializar tablas y datos base
 
 ```bash
 npm run setup
 ```
 
-Levantar el servidor:
+## Levantar el servidor
 
 ```bash
 npm run dev
 ```
 
-Probar:
+El servidor corre en `http://localhost:3000`
 
-```bash
+---
+
+## Verificar que funciona
 GET http://localhost:3000/health
-```
 
+---
+
+## Endpoints disponibles
+
+| Método | Ruta | Acceso | Descripción |
+|--------|------|--------|-------------|
+| POST | `/api/auth/login` | Público | Iniciar sesión |
+| GET | `/api/auth/me` | Token | Usuario actual |
+| POST | `/api/donaciones` | Público | Registrar donación |
+| GET | `/api/donaciones` | Admin | Ver historial |
+| PATCH | `/api/donaciones/:id` | Admin | Cambiar estado |
+| GET | `/api/voluntarios` | Público | Listar voluntarios |
+| POST | `/api/familias` | Token | Crear familia |
+| GET | `/api/actividades` | Token | Listar actividades |
+
+---
+
+## Estructura del proyecto
+src/
+config/        → configuración de base de datos y entorno
+controllers/   → reciben peticiones y responden
+entities/      → modelos de la base de datos
+handlers/      → formato estándar de respuestas
+middlewares/   → autenticación y roles
+routes/        → definición de URLs
+services/      → lógica de negocio
+validations/   → validación de datos de entrada
