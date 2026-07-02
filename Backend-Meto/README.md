@@ -30,7 +30,7 @@ DB_PASSWORD=tu_contraseña
 DEFAULT_ADMIN_NAME=Administrador
 DEFAULT_ADMIN_EMAIL=admin@example.com
 DEFAULT_ADMIN_PASSWORD=admin123
-JWT_SECRET=clave_secreta_jwt
+JWT_SECRET=clave_secreta_jwt 
 
 Crea la base de datos en PostgreSQL:
 
