@@ -46,5 +46,3 @@ El frontend se abre en `http://localhost:3001`
 - Panel admin para ver historial y validar o rechazar donaciones
 
 ---
-
-## Credenciales de administrador
